@@ -8,19 +8,22 @@ use Enqueue\Consumption\QueueSubscriberInterface;
 use Enqueue\ProcessorRegistryInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(
+    name: 'enqueue:transport:consume',
+    hidden: false
+)]
 class ConfigurableConsumeCommand extends Command
 {
     use LimitsExtensionsCommandTrait;
     use QueueConsumerOptionsCommandTrait;
     use ChooseLoggerCommandTrait;
-
-    protected static $defaultName = 'enqueue:transport:consume';
 
     /**
      * @var ContainerInterface
